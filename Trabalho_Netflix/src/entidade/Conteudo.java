@@ -1,6 +1,6 @@
 package entidade;
 
-public abstract class Conteudo {
+public abstract class Conteudo implements Relevancia{
 	private String titulo;
 	private Integer likes;
 	private Integer dislikes;
@@ -49,6 +49,10 @@ public abstract class Conteudo {
 	public Conteudo() {
 	}
 	
+	@Override
+	public Double avaliacao() {
+		return (double) (getLikes()/(getLikes()+getDislikes()));
+	}
 	
 	
 	

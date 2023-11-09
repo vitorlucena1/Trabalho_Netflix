@@ -1,6 +1,6 @@
 package entidade;
 
 public enum Categoria {
-	Ação, Comédia, Drama, Suspense, Terror, Romance, Ficção;
+	ACAO, COMEDIA, DRAMA, SUSPENSE, TERROR, ROMANCE, FICCAO;
 
 }
