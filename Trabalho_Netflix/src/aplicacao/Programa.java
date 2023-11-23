@@ -2,14 +2,11 @@ package aplicacao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Scanner;
 
 import entidade.Administrador;
 import entidade.Catalogo;
 import entidade.Categoria;
-import entidade.Conteudo;
 import entidade.Curta;
 import entidade.Minisserie;
 import entidade.Serie;
