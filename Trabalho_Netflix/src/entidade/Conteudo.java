@@ -1,11 +1,15 @@
 package entidade;
 
+import java.util.ArrayList;
+
 public abstract class Conteudo implements Relevancia{
 	private String titulo;
-	private Integer likes;
-	private Integer dislikes;
+	private Double likes;
+	private Double dislikes;
 	private Categoria categoria;
-	private Double duração;
+	private Integer duracao;
+	private String nomeProdutora;
+	private String classificacaoEtaria;
 	
 	public String getTitulo() {
 		return titulo;
@@ -13,16 +17,16 @@ public abstract class Conteudo implements Relevancia{
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public Integer getLikes() {
+	public Double getLikes() {
 		return likes;
 	}
-	public void setLikes(Integer likes) {
+	public void setLikes(Double likes) {
 		this.likes = likes;
 	}
-	public Integer getDislikes() {
+	public Double getDislikes() {
 		return dislikes;
 	}
-	public void setDislikes(Integer dislikes) {
+	public void setDislikes(Double dislikes) {
 		this.dislikes = dislikes;
 	}
 	public Categoria getCategoria() {
@@ -31,19 +35,33 @@ public abstract class Conteudo implements Relevancia{
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public Double getDuração() {
-		return duração;
+	public Integer getDuracao() {
+		return duracao;
 	}
-	public void setDuração(Double duração) {
-		this.duração = duração;
+	public void setDuracao(Integer duracao) {
+		this.duracao = duracao;
+	}
+	public String getNomeProdutora() {
+		return nomeProdutora;
+	}
+	public void setNomeProdutora(String nomeProdutora) {
+		this.nomeProdutora = nomeProdutora;
+	}
+	public String getClassificacaoEtaria() {
+		return classificacaoEtaria;
+	}
+	public void setClassificacaoEtaria(String classificacaoEtaria) {
+		this.classificacaoEtaria = classificacaoEtaria;
 	}
 	
-	public Conteudo(String titulo, Integer likes, Integer dislikes, Categoria categoria, Double duração) {
+	public Conteudo(String titulo, Double likes, Double dislikes, Categoria categoria, Integer duracao, String nomeProdutora, String classificacaoEtaria) {
 		this.titulo = titulo;
 		this.likes = likes;
 		this.dislikes = dislikes;
 		this.categoria = categoria;
-		this.duração = duração;
+		this.duracao = duracao;
+		this.nomeProdutora = nomeProdutora;
+		this.classificacaoEtaria = classificacaoEtaria;
 	}
 	
 	public Conteudo() {
@@ -51,9 +69,22 @@ public abstract class Conteudo implements Relevancia{
 	
 	@Override
 	public Double avaliacao() {
-		return (double) (getLikes()/(getLikes()+getDislikes()));
+		return 100*(getLikes()/(getLikes()+getDislikes()));
 	}
 	
+	public Boolean pesquisar(ArrayList<Conteudo> conteudos, String titulo) {
+		for(Conteudo c : conteudos) {
+			if(titulo.equalsIgnoreCase(c.getTitulo()))
+			return true;
+		}
+		return false;
+	}
 	
+	@Override
+	public String toString() {
+		return "Titulo = " + titulo + ", Likes = " + likes + ", Dislikes = " + dislikes + String.format(", Avaliação = %.2f", avaliacao()) +"%, Categoria = " + categoria
+				+ ", Nome da Produtora = " + nomeProdutora + ", Classificação Etária = "
+				+ classificacaoEtaria;
+	}
 	
 }
